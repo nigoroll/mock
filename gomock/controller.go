@@ -75,6 +75,7 @@ type Controller struct {
 	mu            sync.Mutex
 	expectedCalls *callSet
 	finished      bool
+	maxStringLen  uint
 }
 
 // NewController returns a new Controller. It is the preferred way to create a Controller.
@@ -118,6 +119,20 @@ func WithOverridableExpectations() overridableExpectationsOption {
 
 func (o overridableExpectationsOption) apply(ctrl *Controller) {
 	ctrl.expectedCalls = newOverridableCallSet()
+}
+
+type maxStringLengthOption struct{ len uint }
+
+// WithMaxStringLength allows to configure a maxmimum length per value
+// to print in verbose. If the length is exceeded, it is printed with "..." to
+// signify the ellipsis. 0 disables
+// It is not yet fully implemented
+func WithMaxStringLength(len uint) maxStringLengthOption {
+	return maxStringLengthOption{len}
+}
+
+func (o maxStringLengthOption) apply(ctrl *Controller) {
+	ctrl.maxStringLen = o.len
 }
 
 type cancelReporter struct {
@@ -209,7 +224,7 @@ func (ctrl *Controller) Call(receiver any, method string, args ...any) []any {
 			origin := callerInfo(3)
 			stringArgs := make([]string, len(args))
 			for i, arg := range args {
-				stringArgs[i] = getString(arg)
+				stringArgs[i] = ctrl.stringEllipsis(getString(arg))
 			}
 			ctrl.T.Fatalf("Unexpected call to %T.%v(%v) at %s because: %s", receiver, method, stringArgs, origin, err)
 		}
@@ -281,7 +296,7 @@ func (ctrl *Controller) finish(cleanup bool, panicErr any) {
 	// Check that all remaining expected calls are satisfied.
 	failures := ctrl.expectedCalls.Failures()
 	for _, call := range failures {
-		ctrl.T.Errorf("missing call(s) to %v", call)
+		ctrl.T.Errorf("missing call(s) to %v", ctrl.stringEllipsis(call.String()))
 	}
 	if len(failures) != 0 {
 		if !cleanup {
@@ -290,6 +305,13 @@ func (ctrl *Controller) finish(cleanup bool, panicErr any) {
 		}
 		ctrl.T.Errorf("aborting test due to missing call(s)")
 	}
+}
+
+func (ctrl *Controller) stringEllipsis(s string) string {
+	if (ctrl.maxStringLen > 0) && (uint(len(s)) > ctrl.maxStringLen) {
+		s = s[0:(ctrl.maxStringLen-1)] + "..."
+	}
+	return s
 }
 
 // callerInfo returns the file:line of the call site. skip is the number
