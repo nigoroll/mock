@@ -18,6 +18,10 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
+
+	"github.com/hexops/gotextdiff"
+	"github.com/hexops/gotextdiff/myers"
+	"github.com/hexops/gotextdiff/span"
 )
 
 // Call represents an expected call to a mock.
@@ -318,7 +322,29 @@ func (c *Call) String() string {
 	return fmt.Sprintf("%T.%v(%s) %s", c.receiver, c.method, arguments, c.origin)
 }
 
-func nomatch(origin string, index int, got interface{}, want interface{}) error {
+func nomatch(origin string, index int, got string, want Matcher) error {
+	doDiff := strings.Contains(got, "\n")
+
+	var wantStr string
+
+	// slightly cheesy way to avoid getting into the Matcher details
+	const pfx string = "is equal to "
+	if doDiff {
+		wantStr = want.String()
+		doDiff = strings.Contains(wantStr, "\n") &&
+			strings.HasPrefix(wantStr, pfx)
+	}
+	if doDiff {
+		wantStr = strings.TrimPrefix(wantStr, pfx)
+	}
+
+	if doDiff {
+		edits := myers.ComputeEdits(span.URIFromPath("want"), wantStr, got)
+		diff := fmt.Sprint(gotextdiff.ToUnified("want", "got", wantStr, edits))
+		return fmt.Errorf("expected call at %s doesn't match the argument at index %d. Diff(Want,Got): \n%v",
+			origin, index, diff)
+	}
+
 	return fmt.Errorf("expected call at %s doesn't match the argument at index %d.\nGot: %v\nWant: %v",
 		origin, index, got, want)
 }
