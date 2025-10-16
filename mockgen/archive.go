@@ -6,7 +6,7 @@ import (
 	"go/types"
 	"os"
 
-	"go.uber.org/mock/mockgen/model"
+	"github.com/nigoroll/mock/mockgen/model"
 
 	"golang.org/x/tools/go/gcexportdata"
 )

@@ -1,4 +1,4 @@
-module go.uber.org/mock
+module github.com/nigoroll/mock
 
 go 1.23.0
 

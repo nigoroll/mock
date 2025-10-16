@@ -21,7 +21,7 @@ within Uber, we've decided to fork and maintain this going forward at Uber.
 
 ## Supported Go Versions
 
-go.uber.org/mock supports all Go versions supported by the official
+github.com/nigoroll/mock supports all Go versions supported by the official
 [Go Release Policy](https://go.dev/doc/devel/release#policy). That is,
 the two most recent releases of Go.
 
@@ -30,7 +30,7 @@ the two most recent releases of Go.
 Install the `mockgen` tool.
 
 ```
-go install go.uber.org/mock/mockgen@latest
+go install github.com/nigoroll/mock/mockgen@latest
 ```
 
 To ensure it was installed correctly, use:
@@ -277,5 +277,5 @@ If the received value is `3`, then it will be printed as `03`.
 [golang]:              http://go.dev/
 [ci-badge]:            https://github.com/uber-go/mock/actions/workflows/test.yaml/badge.svg
 [ci-runs]:             https://github.com/uber-go/mock/actions
-[reference-badge]:     https://pkg.go.dev/badge/go.uber.org/mock.svg
-[reference]:           https://pkg.go.dev/go.uber.org/mock
+[reference-badge]:     https://pkg.go.dev/badge/github.com/nigoroll/mock.svg
+[reference]:           https://pkg.go.dev/github.com/nigoroll/mock

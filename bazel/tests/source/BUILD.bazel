@@ -7,7 +7,7 @@ go_library(
         "client.go",
         "client_wrapper.go",
     ],
-    importpath = "go.uber.org/mock/bazel/tests/source",
+    importpath = "github.com/nigoroll/mock/bazel/tests/source",
     visibility = ["//visibility:public"],
 )
 
@@ -36,11 +36,11 @@ gomock(
     name = "wrapper_mocks",
     out = "wrapper_mock.go",
     aux_files = {
-        "client.go": "go.uber.org/mock/bazel/tests/source",
+        "client.go": "github.com/nigoroll/mock/bazel/tests/source",
     },
     library = ":client",
     package = "client",
-    self_package = "go.uber.org/mock/bazel/tests/source",
+    self_package = "github.com/nigoroll/mock/bazel/tests/source",
     source = "client_wrapper.go",
     visibility = ["//visibility:public"],
 )

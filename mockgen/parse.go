@@ -33,7 +33,7 @@ import (
 	"strconv"
 	"strings"
 
-	"go.uber.org/mock/mockgen/model"
+	"github.com/nigoroll/mock/mockgen/model"
 )
 
 // sourceMode generates mocks via source file.

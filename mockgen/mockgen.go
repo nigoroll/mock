@@ -40,11 +40,11 @@ import (
 	"golang.org/x/mod/modfile"
 	toolsimports "golang.org/x/tools/imports"
 
-	"go.uber.org/mock/mockgen/model"
+	"github.com/nigoroll/mock/mockgen/model"
 )
 
 const (
-	gomockImportPath = "go.uber.org/mock/gomock"
+	gomockImportPath = "github.com/nigoroll/mock/gomock"
 )
 
 var (

@@ -4,7 +4,7 @@ import (
 	"encoding/gob"
 	"os"
 
-	"go.uber.org/mock/mockgen/model"
+	"github.com/nigoroll/mock/mockgen/model"
 )
 
 func gobMode(path string) (*model.Package, error) {

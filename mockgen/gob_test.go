@@ -15,7 +15,7 @@ func TestGobMode(t *testing.T) {
 	// Encode a package to a temporary gob.
 	parser := packageModeParser{}
 	want, err := parser.parsePackage(
-		"go.uber.org/mock/mockgen/internal/tests/package_mode", /* package name */
+		"github.com/nigoroll/mock/mockgen/internal/tests/package_mode", /* package name */
 		[]string{"Human", "Earth"},                             /* ifaces */
 	)
 	require.NoError(t, err)

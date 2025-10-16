@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"go.uber.org/mock/gomock"
+	"github.com/nigoroll/mock/gomock"
 )
 
 type Foo interface {

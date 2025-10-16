@@ -3,7 +3,7 @@ package bugreport
 import (
 	"testing"
 
-	"go.uber.org/mock/gomock"
+	"github.com/nigoroll/mock/gomock"
 )
 
 func TestExample_Method(t *testing.T) {

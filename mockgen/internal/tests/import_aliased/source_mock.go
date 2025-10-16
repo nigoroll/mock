@@ -13,7 +13,7 @@ import (
 	definitionAlias "context"
 	reflect "reflect"
 
-	gomock "go.uber.org/mock/gomock"
+	gomock "github.com/nigoroll/mock/gomock"
 )
 
 // MockS is a mock of S interface.

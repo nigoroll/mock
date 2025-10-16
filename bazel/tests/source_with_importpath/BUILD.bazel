@@ -8,7 +8,7 @@ go_library(
         "client.go",
         "client_mock.go",
     ],
-    importpath = "go.uber.org/mock/bazel/tests/source_with_importpath",
+    importpath = "github.com/nigoroll/mock/bazel/tests/source_with_importpath",
     visibility = ["//visibility:public"],
     deps = [
         "@org_uber_go_mock//gomock",
@@ -22,7 +22,7 @@ gomock(
     out = "client_mock.go",
     package = "client",
     source = "client.go",
-    source_importpath = "go.uber.org/mock/bazel/tests/source_with_importpath",
+    source_importpath = "github.com/nigoroll/mock/bazel/tests/source_with_importpath",
     visibility = ["//visibility:public"],
 )
 

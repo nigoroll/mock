@@ -12,8 +12,8 @@ package mock_pkg
 import (
 	reflect "reflect"
 
-	gomock "go.uber.org/mock/gomock"
-	pkg "go.uber.org/mock/mockgen/internal/tests/internal_pkg/subdir/internal/pkg"
+	gomock "github.com/nigoroll/mock/gomock"
+	pkg "github.com/nigoroll/mock/mockgen/internal/tests/internal_pkg/subdir/internal/pkg"
 )
 
 // MockArg is a mock of Arg interface.

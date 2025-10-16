@@ -12,7 +12,7 @@ package paniccode
 import (
 	reflect "reflect"
 
-	gomock "go.uber.org/mock/gomock"
+	gomock "github.com/nigoroll/mock/gomock"
 )
 
 // MockFoo is a mock of Foo interface.

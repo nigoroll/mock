@@ -15,7 +15,7 @@ import (
 	. "net/http"
 	reflect "reflect"
 
-	gomock "go.uber.org/mock/gomock"
+	gomock "github.com/nigoroll/mock/gomock"
 )
 
 // MockWithDotImports is a mock of WithDotImports interface.

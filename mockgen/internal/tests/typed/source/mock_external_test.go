@@ -12,9 +12,9 @@ package source
 import (
 	reflect "reflect"
 
-	gomock "go.uber.org/mock/gomock"
-	typed "go.uber.org/mock/mockgen/internal/tests/typed"
-	other "go.uber.org/mock/mockgen/internal/tests/typed/other"
+	gomock "github.com/nigoroll/mock/gomock"
+	typed "github.com/nigoroll/mock/mockgen/internal/tests/typed"
+	other "github.com/nigoroll/mock/mockgen/internal/tests/typed/other"
 	constraints "golang.org/x/exp/constraints"
 )
 

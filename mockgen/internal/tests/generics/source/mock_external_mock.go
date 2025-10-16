@@ -13,9 +13,9 @@ import (
 	context "context"
 	reflect "reflect"
 
-	gomock "go.uber.org/mock/gomock"
-	generics "go.uber.org/mock/mockgen/internal/tests/generics"
-	other "go.uber.org/mock/mockgen/internal/tests/generics/other"
+	gomock "github.com/nigoroll/mock/gomock"
+	generics "github.com/nigoroll/mock/mockgen/internal/tests/generics"
+	other "github.com/nigoroll/mock/mockgen/internal/tests/generics/other"
 	constraints "golang.org/x/exp/constraints"
 )
 

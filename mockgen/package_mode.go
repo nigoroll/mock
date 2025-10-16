@@ -7,7 +7,7 @@ import (
 	"go/types"
 	"strings"
 
-	"go.uber.org/mock/mockgen/model"
+	"github.com/nigoroll/mock/mockgen/model"
 	"golang.org/x/tools/go/packages"
 )
 
