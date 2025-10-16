@@ -5,6 +5,14 @@ exists because [they require CLAs for
 contributions](https://github.com/uber-go/mock/blob/main/CONTRIBUTING.md) and [I
 will not sign it](https://drewdevault.com/2023/07/04/Dont-sign-a-CLA-2.html).
 
+## differences to upstream
+
+- Add WithMaxStringLength(uint) option to limit the length of strings output by
+  failed expectations.
+
+- For failed expectations on multiline strings, format the output as a unified
+  diff-style
+
 # gomock
 
 [![Build Status][ci-badge]][ci-runs] [![Go Reference][reference-badge]][reference]

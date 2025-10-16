@@ -3,7 +3,14 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## 0.6.1 (16 Oct 2025)
+
+- Add WithMaxStringLength(uint) option to limit the length of strings output by
+  failed expectations.
+
+- For failed expectations on multiline strings, format the output as a unified
+  diff-style
+
 - [#273][]: Archive mode: supports same capabilities as "package" mode, including:
   erroring out on type constraints and handling type aliases explicitly
 
