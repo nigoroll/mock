@@ -1,3 +1,10 @@
+# about this repository
+
+This repository is a fork of [uber gomock](https://github.com/uber-go/mock). It
+exists because [they require CLAs for
+contributions](https://github.com/uber-go/mock/blob/main/CONTRIBUTING.md) and [I
+will not sign it](https://drewdevault.com/2023/07/04/Dont-sign-a-CLA-2.html).
+
 # gomock
 
 [![Build Status][ci-badge]][ci-runs] [![Go Reference][reference-badge]][reference]
