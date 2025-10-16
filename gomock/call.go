@@ -17,7 +17,6 @@ package gomock
 import (
 	"fmt"
 	"reflect"
-	"strconv"
 	"strings"
 )
 
@@ -319,6 +318,11 @@ func (c *Call) String() string {
 	return fmt.Sprintf("%T.%v(%s) %s", c.receiver, c.method, arguments, c.origin)
 }
 
+func nomatch(origin string, index int, got interface{}, want interface{}) error {
+	return fmt.Errorf("expected call at %s doesn't match the argument at index %d.\nGot: %v\nWant: %v",
+		origin, index, got, want)
+}
+
 // Tests if the given call matches the expected call.
 // If yes, returns nil. If no, returns error with message explaining why it does not match.
 func (c *Call) matches(args []any) error {
@@ -330,8 +334,7 @@ func (c *Call) matches(args []any) error {
 
 		for i, m := range c.args {
 			if !m.Matches(args[i]) {
-				return fmt.Errorf(
-					"expected call at %s doesn't match the argument at index %d.\nGot: %v\nWant: %v",
+				return nomatch(
 					c.origin, i, formatGottenArg(m, args[i]), m,
 				)
 			}
@@ -354,8 +357,8 @@ func (c *Call) matches(args []any) error {
 			if i < c.methodType.NumIn()-1 {
 				// Non-variadic args
 				if !m.Matches(args[i]) {
-					return fmt.Errorf("expected call at %s doesn't match the argument at index %s.\nGot: %v\nWant: %v",
-						c.origin, strconv.Itoa(i), formatGottenArg(m, args[i]), m)
+					return nomatch(
+						c.origin, i, formatGottenArg(m, args[i]), m)
 				}
 				continue
 			}
@@ -398,8 +401,8 @@ func (c *Call) matches(args []any) error {
 			// Got Foo(a, b, c, d, e) want Foo(matcherA, matcherB, matcherC, matcherD)
 			// Got Foo(a, b, c) want Foo(matcherA, matcherB)
 
-			return fmt.Errorf("expected call at %s doesn't match the argument at index %s.\nGot: %v\nWant: %v",
-				c.origin, strconv.Itoa(i), formatGottenArg(m, args[i:]), c.args[i])
+			return nomatch(
+				c.origin, i, formatGottenArg(m, args[i:]), c.args[i])
 		}
 	}
 
